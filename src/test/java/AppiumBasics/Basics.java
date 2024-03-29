@@ -1,29 +1,34 @@
 package AppiumBasics;
-
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
+import Utils.Base;
+import io.appium.java_client.AppiumBy;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
-public class Basics {
+public class Basics extends Base{
+
+
     @Test
-    public void AppiumTest() throws MalformedURLException, URISyntaxException {
+    public void WifiSettingsName() throws MalformedURLException, URISyntaxException, InterruptedException {
 
-        AppiumDriverLocalService service = new AppiumServiceBuilder().withAppiumJS(new File("//usr//local//lib//node_modules//appium//build//lib//main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4723).build();
-        service.start();
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("Pixel 6 Pro API 34");
-        options.setApp("//Users//surajkhopkar//Library//CloudStorage//OneDrive-Personal//Repositories//JavaFrameworks//AppiumJava//src//test//java//Resources//ApiDemos-debug.apk");
-        AndroidDriver driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(),options);
-        driver.quit();
-        service.stop();
+        driver.findElement(AppiumBy.accessibilityId("Preference")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+        driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
+        driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"WiFi settings\"]")).click();
+        String alertTitle = driver.findElement(By.id("android:id/alertTitle")).getText();
+        Assert.assertEquals(alertTitle, "WiFi settings");
+        driver.findElement(By.id("android:id/edit")).sendKeys("Salah");
+        driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
+
+
+
+
+
+
+
+
 
     }
 }
