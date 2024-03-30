@@ -1,5 +1,5 @@
 package AppiumBasics;
-import Utils.Base;
+import Utils.Conftest;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
-public class Basics extends Base{
+public class Basics extends Conftest{
 
 
     @Test
