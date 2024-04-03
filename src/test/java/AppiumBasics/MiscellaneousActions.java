@@ -2,6 +2,7 @@ package AppiumBasics;
 
 import Utils.Conftest;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
@@ -16,7 +17,10 @@ public class MiscellaneousActions extends Conftest{
 
     @Test
     public void Miscellaneous() throws MalformedURLException, URISyntaxException, InterruptedException {
-
+        //adb shell dumpsys window | grep -E 'mCurrentFocus'
+        Activity activity = new Activity("io.appium.android.apis", "io.appium.android.apis.preference.PreferenceDependencies");
+        //Deprecated
+        //driver.startActivity(new Activity("io.appium.android.apis", "io.appium.android.apis.preference.PreferenceDependencies"));
         driver.findElement(AppiumBy.accessibilityId("Preference")).click();
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
         driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
